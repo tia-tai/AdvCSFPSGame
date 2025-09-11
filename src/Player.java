@@ -9,35 +9,52 @@ public class Player {
     Random random = new Random();
 
     void shoot(NPC npc) {
-        float hit = random.nextFloat();
-        if (hit < gun.accuracy) {
-            npc.hp -= gun.damage;
-            if (npc.hp < 1) {
-                System.out.println("You killed " + npc.NPCname);
-                npc.alive = false;
-                kills++;
+        if (gun.bulletCount < 1) {
+            System.out.println(username + " needs to reload");
+        }
+        else {
+            float hit = random.nextFloat();
+            if (hit < gun.accuracy) {
+                int bulletsConsumed = random.nextInt(1, 6);
+                gun.bulletCount = Math.max(0, gun.bulletCount - bulletsConsumed);
+                npc.hp -= gun.damage;
+                if (npc.hp < 1) {
+                    System.out.println(username + " killed " + npc.NPCname);
+                    npc.alive = false;
+                    kills++;
+                } else {
+                    System.out.println(username + " dealt " + gun.damage + " damage to " + npc.NPCname);
+                }
             } else {
-                System.out.println("You dealt " + gun.damage + " damage to " + npc.NPCname);
+                System.out.println(username + " have missed");
             }
-        } else {
-            System.out.println("You have missed");
         }
     }
 
     void shoot (Player player) {
-        float hit = random.nextFloat();
-        if (hit < gun.accuracy) {
-            player.hp -= gun.damage;
-            if (player.hp < 1) {
-                System.out.println("You killed " + player.username);
-                player.alive = false;
-                kills++;
-            } else {
-                System.out.println("You dealt " + gun.damage + " damage to " + player.username);
-            }
-        } else {
-            System.out.println("You have missed");
+        if (gun.bulletCount < 1) {
+            System.out.println(username + " needs to reload");
         }
+        else {
+            float hit = random.nextFloat();
+            if (hit < gun.accuracy) {
+                player.hp -= gun.damage;
+                if (player.hp < 1) {
+                    System.out.println(username + " killed " + player.username);
+                    player.alive = false;
+                    kills++;
+                } else {
+                    System.out.println(username + " dealt " + gun.damage + " damage to " + player.username);
+                }
+            } else {
+                System.out.println(username + " have missed");
+            }
+        }
+    }
+
+    void reload () {
+        gun.bulletCount = gun.maxBullets;
+        System.out.println(username + " has reloaded their gun");
     }
 
     void heal () {
@@ -47,6 +64,6 @@ public class Player {
     }
 
     void status() {
-        System.out.println(username + "\n HP: " + hp + "/100\nKills: " + kills + "\nGun: " + gun.weaponName + "\nAlive: " + alive);
+        System.out.println(username + "\n HP: " + hp + "/100\nKills: " + kills + "\nGun: " + gun.weaponName + "\nAmmo: " + gun.bulletCount + "/" + gun.maxBullets + "\nAlive: " + alive);
     }
 }
