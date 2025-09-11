@@ -2,10 +2,10 @@ public class Weapon {
     String weaponname;
     boolean shooting;
     boolean reloading;
-    int maxBullets;
-    int bulletCount;
-    int damage;
-    float accuracy;
+    boolean maxBullets;
+    boolean bulletCount;
+    boolean damage;
+
     void aimDownSights(){
 
     }
@@ -13,6 +13,10 @@ public class Weapon {
 
     }
     void reload(){
+
+    }
+    void fire(Player owner) {
+
     }
 }
 
