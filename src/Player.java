@@ -2,10 +2,10 @@ import java.util.Random;
 
 public class Player {
     String username;
-    int kills;
-    boolean alive;
+    int kills = 0;
+    boolean alive = true;
     Weapon gun;
-    int hp;
+    int hp = 100;
     Random random = new Random();
 
     void shoot(NPC npc) {
