@@ -20,4 +20,5 @@ public class NPC {
             System.out.println("You have missed");
         }
     }
+    
 }
