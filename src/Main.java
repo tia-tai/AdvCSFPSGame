@@ -12,6 +12,10 @@ public class Main {
         Player kim = new Player();
         kim.username = "Kim";
 
+        NPC john = new NPC();
+        john.NPCname = "John";
+
+
         Weapon vandal = new Weapon();
         vandal.weaponName = "Vandal";
         vandal.maxBullets = 25;
@@ -20,6 +24,15 @@ public class Main {
         vandal.accuracy = 0.6f;
 
         kim.gun = vandal;
+
+        Weapon p80 = new Weapon();
+        p80.weaponName = "P80";
+        p80.maxBullets = 17;
+        p80.bulletCount = 17;
+        p80.damage = 40;
+        p80.accuracy = 0.7;
+
+        john.gun = p80;
 
         players.add(kim);
 
