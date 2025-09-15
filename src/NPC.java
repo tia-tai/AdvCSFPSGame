@@ -1,47 +1,40 @@
 import java.util.Random;
 
-public class NPC {
-    String NPCname;
-    boolean alive = true;
-    int kills = 0;
-    int hp = 100;
-    Weapon gun;
-
-    Random random = new Random();
+public class NPC extends Character {
 
     void action(Player player) {
         if (gun.bulletCount < 1) {
-            System.out.println(NPCname + " needs to reload");
+            System.out.println(username + " needs to reload");
         } else {
             float hit = random.nextFloat();
             if (hit < gun.accuracy) {
                 player.hp -= gun.damage;
                 if (player.hp < 1) {
-                    System.out.println("You killed " + player.username);
+                    System.out.println(username + " killed " + player.username);
                     player.alive = false;
                     kills++;
                 } else {
-                    System.out.println("You dealt " + gun.damage + "damage to " + player.username);
+                    System.out.println(username + " dealt " + gun.damage + " damage to " + player.username);
                 }
             } else {
-                System.out.println("You have missed");
+                System.out.println(username + " have missed");
             }
         }
     }
 
     void action(NPC npc) {
         if (gun.bulletCount < 1) {
-            System.out.println(NPCname + " needs to reload");
+            System.out.println(username + " needs to reload");
         } else {
             float hit = random.nextFloat();
             if (hit < gun.accuracy) {
                 npc.hp -= gun.damage;
                 if (npc.hp < 1) {
-                    System.out.println("You killed " + npc.NPCname);
+                    System.out.println(username + " killed " + npc.username);
                     npc.alive = false;
                     kills++;
                 } else {
-                    System.out.println("You have missed");
+                    System.out.println(username + " have missed");
                 }
             }
         }

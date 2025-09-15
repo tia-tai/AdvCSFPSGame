@@ -12,10 +12,6 @@ public class Main {
         Player kim = new Player();
         kim.username = "Kim";
 
-        NPC john = new NPC();
-        john.NPCname = "John";
-
-
         Weapon vandal = new Weapon();
         vandal.weaponName = "Vandal";
         vandal.maxBullets = 25;
@@ -24,56 +20,84 @@ public class Main {
         vandal.accuracy = 0.6f;
 
         kim.gun = vandal;
+        players.add(kim);
 
         Weapon p80 = new Weapon();
         p80.weaponName = "P80";
         p80.maxBullets = 17;
         p80.bulletCount = 17;
         p80.damage = 40;
-        p80.accuracy = 0.7;
-
-        john.gun = p80;
-
-        players.add(kim);
+        p80.accuracy = 0.7f;
 
         NPC john = new NPC();
-        john.NPCname = "John";
+        john.username = "John";
 
-        Weapon guardian = new Weapon();
-        guardian.weaponName = "Guardian";
-        guardian.maxBullets = 12;
-        guardian.bulletCount = 12;
-        guardian.damage = 75;
-        guardian.accuracy = 0.8f;
-
-        john.gun = guardian;
-
+        john.gun = p80;
         npcs.add(john);
 
         for (int i = 0; i < 100; i++) {
             if (i % 2 == 0) {
                 int npcIndex = random.nextInt(0,npcs.size());
+                NPC npc = npcs.get(npcIndex);
+                while (!npc.alive) {
+                    npcIndex = random.nextInt(0,players.size());
+                    npc = npcs.get(npcIndex);
+                }
                 int playerIndex = random.nextInt(0,players.size());
-                npcs.get(npcIndex).action(players.get(playerIndex));
+                Player player = players.get(playerIndex);
+                while (!player.alive) {
+                    playerIndex = random.nextInt(0,players.size());
+                    player = players.get(playerIndex);
+                }
+                npc.action(player);
             }
             else {
                 int playerIndex = random.nextInt(0,players.size());
                 Player player = players.get(playerIndex);
+                while (!player.alive) {
+                    playerIndex = random.nextInt(0,players.size());
+                    player = players.get(playerIndex);
+                }
                 System.out.println(player.username + " Move Menu:\n1. Shoot NPC\n2. Shoot Player\n3. Reload\n4. Heal");
                 String choice = scanner.nextLine();
                 switch (choice) {
                     case ("1") -> {
                         StringBuilder npcNames = new StringBuilder();
-                        for (NPC npc : npcs) {
-                            npcNames.append(npc.NPCname).append("\n");
-                        }
-                        System.out.println(player.username + " Shoot Menu:\n" + npcNames);
-                        String npcChoiceName = scanner.nextLine();
                         NPC npcChoice = null;
-
                         for (NPC npc : npcs) {
-                            if npc.NPCname
+                            npcNames.append(npc.username).append("\n");
                         }
+
+                        while (npcChoice == null) {
+                            System.out.println(player.username + " Shoot Menu:\n" + npcNames);
+                            String npcChoiceName = scanner.nextLine();
+                            for (NPC npc : npcs) {
+                                if (npc.username.equals(npcChoiceName)) {
+                                    npcChoice = npc;
+                                }
+                            }
+                        }
+                        player.shoot(npcChoice);
+                    }
+                    case ("2") -> {
+                        StringBuilder playerNames = new StringBuilder();
+                        Player playerChoice = null;
+                        for (Player listplayer : players) {
+                            if (!listplayer.username.equals(player.username)) {
+                                playerNames.append(listplayer.username).append("\n");
+                            }
+                        }
+
+                        while (playerChoice == null) {
+                            System.out.println(player.username + " Shoot Menu:\n" + playerNames);
+                            String playerChoiceName = scanner.nextLine();
+                            for (Player listplayer : players) {
+                                if (listplayer.username.equals(playerChoiceName)) {
+                                    playerChoice = listplayer;
+                                }
+                            }
+                        }
+                        player.shoot(playerChoice);
                     }
 
 

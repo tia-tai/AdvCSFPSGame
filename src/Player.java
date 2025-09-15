@@ -1,14 +1,8 @@
 import java.util.Random;
 
-public class Player {
-    String username;
-    int kills = 0;
-    boolean alive = true;
-    Weapon gun;
-    int hp = 100;
-    Random random = new Random();
+public class Player extends Character {
 
-    void shoot(NPC npc) {
+    void shoot(Character player) {
         if (gun.bulletCount < 1) {
             System.out.println(username + " needs to reload");
         }
@@ -17,27 +11,6 @@ public class Player {
             if (hit < gun.accuracy) {
                 int bulletsConsumed = random.nextInt(1, 6);
                 gun.bulletCount = Math.max(0, gun.bulletCount - bulletsConsumed);
-                npc.hp -= gun.damage;
-                if (npc.hp < 1) {
-                    System.out.println(username + " killed " + npc.NPCname);
-                    npc.alive = false;
-                    kills++;
-                } else {
-                    System.out.println(username + " dealt " + gun.damage + " damage to " + npc.NPCname);
-                }
-            } else {
-                System.out.println(username + " have missed");
-            }
-        }
-    }
-
-    void shoot (Player player) {
-        if (gun.bulletCount < 1) {
-            System.out.println(username + " needs to reload");
-        }
-        else {
-            float hit = random.nextFloat();
-            if (hit < gun.accuracy) {
                 player.hp -= gun.damage;
                 if (player.hp < 1) {
                     System.out.println(username + " killed " + player.username);
