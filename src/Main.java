@@ -7,6 +7,7 @@ public class Main {
         ArrayList<Player> players = new ArrayList<Player>();
         ArrayList<NPC> npcs = new ArrayList<NPC>();
         ArrayList<Character> allCharacters = new ArrayList<Character>();
+        ArrayList<Weapon> weapons = new ArrayList<Weapon>();
         Random random = new Random();
         Scanner scanner = new Scanner(System.in);
 
@@ -107,6 +108,14 @@ public class Main {
         tom.gun = bow;
         npcs.add(tom);
         allCharacters.add(tom);
+
+        weapons.add(bow);
+        weapons.add(vandal);
+        weapons.add(guardian);
+        weapons.add(samosa);
+        weapons.add(p80);
+        weapons.add(odin);
+        weapons.add(m1911);
 
         for (int i = 0; i < 100; i++) {
             if (i % 2 == 0) {
