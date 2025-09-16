@@ -5,6 +5,7 @@ public class NPC extends Character {
     void action(Player player) {
         if (gun.bulletCount < 1) {
             System.out.println(username + " needs to reload");
+            gun.bulletCount = gun.maxBullets;
         } else {
             int bulletsConsumed = random.nextInt(1, 6);
             gun.bulletCount = Math.max(0, gun.bulletCount - bulletsConsumed);
@@ -27,6 +28,7 @@ public class NPC extends Character {
     void action(NPC npc) {
         if (gun.bulletCount < 1) {
             System.out.println(username + " needs to reload");
+            gun.bulletCount = gun.maxBullets;
         } else {
             int bulletsConsumed = random.nextInt(1, 6);
             gun.bulletCount = Math.max(0, gun.bulletCount - bulletsConsumed);
