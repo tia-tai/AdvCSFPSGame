@@ -6,6 +6,8 @@ public class NPC extends Character {
         if (gun.bulletCount < 1) {
             System.out.println(username + " needs to reload");
         } else {
+            int bulletsConsumed = random.nextInt(1, 6);
+            gun.bulletCount = Math.max(0, gun.bulletCount - bulletsConsumed);
             float hit = random.nextFloat();
             if (hit < gun.accuracy) {
                 player.hp -= gun.damage;
@@ -26,6 +28,8 @@ public class NPC extends Character {
         if (gun.bulletCount < 1) {
             System.out.println(username + " needs to reload");
         } else {
+            int bulletsConsumed = random.nextInt(1, 6);
+            gun.bulletCount = Math.max(0, gun.bulletCount - bulletsConsumed);
             float hit = random.nextFloat();
             if (hit < gun.accuracy) {
                 npc.hp -= gun.damage;
