@@ -8,9 +8,9 @@ public class Player extends Character {
         }
         else {
             float hit = random.nextFloat();
+            int bulletsConsumed = random.nextInt(1, 6);
+            gun.bulletCount = Math.max(0, gun.bulletCount - bulletsConsumed);
             if (hit < gun.accuracy) {
-                int bulletsConsumed = random.nextInt(1, 6);
-                gun.bulletCount = Math.max(0, gun.bulletCount - bulletsConsumed);
                 player.hp -= gun.damage;
                 if (player.hp < 1) {
                     System.out.println(username + " killed " + player.username);
