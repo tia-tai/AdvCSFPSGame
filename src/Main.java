@@ -18,7 +18,7 @@ public class Main {
         vandal.maxBullets = 25;
         vandal.bulletCount = 25;
         vandal.damage = 45;
-        vandal.accuracy = 0.6f;
+        vandal.accuracy = 0.8f;
 
         kim.gun = vandal;
         players.add(kim);
