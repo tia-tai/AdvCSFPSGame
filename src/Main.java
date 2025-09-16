@@ -17,7 +17,7 @@ public class Main {
         vandal.maxBullets = 25;
         vandal.bulletCount = 25;
         vandal.damage = 45;
-        vandal.accuracy = 0.6f;
+        vandal.accuracy = 0.8f;
 
         kim.gun = vandal;
         players.add(kim);
@@ -27,9 +27,20 @@ public class Main {
         p80.maxBullets = 17;
         p80.bulletCount = 17;
         p80.damage = 40;
+        p80.accuracy = 0.6f;
+
+        players.add(kim);
+        Weapon MP5 = new Weapon();
+        MP5.weaponName = "MP5";
+        MP5.shooting = true;
+        MP5.maxBullets = 5;
+        MP5.bulletCount = 30;
+        MP5.accuracy = 0.3f;
         p80.accuracy = 0.7f;
 
         NPC john = new NPC();
+        john.NPCname = "John";
+        john.gun = p80;
         john.username = "John";
 
         NPC robocop = new NPC();
@@ -46,10 +57,21 @@ public class Main {
         guardian.maxBullets = 12;
         guardian.bulletCount = 12;
         guardian.damage = 75;
-        guardian.accuracy = 0.8f;
+
+        ArrayList<Weapon> weapons;;
+
+
+        weapons = new ArrayList<Weapon>();
+            weapons.add(vandal);
+            weapons.add(MP5);
+            weapons.add(p80);
+            weapons.add(guardian);
+
 
         john.gun = p80;
         npcs.add(john);
+
+        MP5.reload();
 
         for (int i = 0; i < 100; i++) {
             if (i % 2 == 0) {
@@ -83,6 +105,12 @@ public class Main {
                         for (NPC npc : npcs) {
                             npcNames.append(npc.username).append("\n");
                         }
+                        System.out.println(player.username + " Shoot Menu:\n" + npcNames);
+                        String npcChoiceName = scanner.nextLine();
+                        NPC npcChoice = null;
+
+                        for (NPC npc : npcs) {
+                            //if npc.NPCname
 
                         while (npcChoice == null) {
                             System.out.println(player.username + " Shoot Menu:\n" + npcNames);

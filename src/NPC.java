@@ -9,7 +9,8 @@ public class NPC extends Character {
         } else {
             int bulletsConsumed = random.nextInt(1, 6);
             gun.bulletCount = Math.max(0, gun.bulletCount - bulletsConsumed);
-            float hit = random.nextFloat();
+            //float hit = Random.nextFloat();
+            float hit = 0.5f;
             if (hit < gun.accuracy) {
                 player.hp -= gun.damage;
                 if (player.hp < 1) {
@@ -32,7 +33,8 @@ public class NPC extends Character {
         } else {
             int bulletsConsumed = random.nextInt(1, 6);
             gun.bulletCount = Math.max(0, gun.bulletCount - bulletsConsumed);
-            float hit = random.nextFloat();
+            //float hit = Random.nextFloat();
+            float hit = 0.5f;
             if (hit < gun.accuracy) {
                 npc.hp -= gun.damage;
                 if (npc.hp < 1) {
