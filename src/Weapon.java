@@ -1,10 +1,11 @@
 public class Weapon {
-    String weaponname;
+    String weaponName;
     boolean shooting;
     boolean reloading;
-    boolean maxBullets;
-    boolean bulletCount;
-    boolean damage;
+    int maxBullets;
+    int bulletCount;
+    int damage;
+    float accuracy;
 
     void aimDownSights(){
 

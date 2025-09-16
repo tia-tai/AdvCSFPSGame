@@ -32,6 +32,22 @@ public class Main {
         NPC john = new NPC();
         john.username = "John";
 
+        NPC robocop = new NPC();
+        robocop.username = "Robo Cop";
+
+        NPC alex = new NPC();
+        alex.username = "Alex";
+
+        NPC shoeb = new NPC();
+        shoeb.username = "Shoeb";
+
+        Weapon guardian = new Weapon();
+        guardian.weaponName = "Guardian";
+        guardian.maxBullets = 12;
+        guardian.bulletCount = 12;
+        guardian.damage = 75;
+        guardian.accuracy = 0.8f;
+
         john.gun = p80;
         npcs.add(john);
 
