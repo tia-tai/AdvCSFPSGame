@@ -35,8 +35,4 @@ public class Player extends Character {
         hp = Math.min(hp + healAmount, 100);
         System.out.println(username + " healed " + healAmount + "HP");
     }
-
-    void status() {
-        System.out.println(username + "\n HP: " + hp + "/100\nKills: " + kills + "\nGun: " + gun.weaponName + "\nAmmo: " + gun.bulletCount + "/" + gun.maxBullets + "\nAlive: " + alive);
-    }
 }

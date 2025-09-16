@@ -2,7 +2,7 @@ import java.util.Random;
 
 public class NPC extends Character {
 
-    void action(Player player) {
+    void action(Character player) {
         if (gun.bulletCount < 1) {
             System.out.println(username + " needs to reload");
             gun.bulletCount = gun.maxBullets;

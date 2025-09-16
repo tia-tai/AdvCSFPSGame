@@ -7,4 +7,8 @@ public class Character {
     Weapon gun;
     int hp = 100;
     Random random = new Random();
+
+    void status() {
+        System.out.println(username + "\nHP: " + hp + "/100\nKills: " + kills + "\nGun: " + gun.weaponName + "\nAmmo: " + gun.bulletCount + "/" + gun.maxBullets + "\nAlive: " + alive);
+    }
 }
