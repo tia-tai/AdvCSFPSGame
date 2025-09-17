@@ -9,6 +9,6 @@ public class Character {
     Random random = new Random();
 
     void status() {
-        System.out.println(username + "\nHP: " + hp + "/100\nKills: " + kills + "\nGun: " + gun.weaponName + "\nAmmo: " + gun.bulletCount + "/" + gun.maxBullets + "\nAlive: " + alive);
+        System.out.println("\n" + username + "\nHP: " + hp + "/100\nKills: " + kills + "\nGun: " + gun.weaponName + "\nAmmo: " + gun.bulletCount + "/" + gun.maxBullets + "\nAlive: " + alive);
     }
 }
