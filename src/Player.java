@@ -36,4 +36,8 @@ public class Player extends Character {
         System.out.println("\n" + username + " healed " + healAmount + "HP");
     }
 
+    public String toString() {
+        return "\nHP: " + hp + "/100";
+    }
+
 }
