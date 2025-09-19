@@ -118,6 +118,7 @@ public class Main {
         weapons.add(m1911);
 
         System.out.println("Game Starts!");
+        System.out.print(kim.toString());
 
         for (int i = 0; i < 100; i++) {
             int aliveCount = 0;
