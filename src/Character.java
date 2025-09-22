@@ -16,6 +16,10 @@ public class Character {
         this.hp = hp;
     }
 
+    public Character() {
+
+    }
+
     void status() {
         System.out.println("\n" + username + "\nHP: " + hp + "/100\nKills: " + kills + "\nGun: " + gun.weaponName + "\nAmmo: " + gun.bulletCount + "/" + gun.maxBullets + "\nAlive: " + alive);
     }

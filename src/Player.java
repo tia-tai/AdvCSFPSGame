@@ -2,42 +2,50 @@ import java.util.Random;
 
 public class Player extends Character {
 
+    public Player(String username, int kills, boolean alive, Weapon gun, int hp) {
+        super(username, kills, alive, gun, hp);
+    }
+
+    public Player() {
+        super();
+    }
+
     void shoot(Character player) {
-        if (gun.bulletCount < 1) {
-            System.out.println("\n" + username + " needs to reload");
+        if (this.getGun().bulletCount < 1) {
+            System.out.println("\n" + this.getUsername() + " needs to reload");
         }
         else {
             float hit = random.nextFloat();
             int bulletsConsumed = random.nextInt(1, 6);
-            gun.bulletCount = Math.max(0, gun.bulletCount - bulletsConsumed);
-            if (hit < gun.accuracy) {
-                player.hp -= gun.damage;
-                if (player.hp < 1) {
-                    System.out.println("\n" + username + " killed " + player.username);
-                    player.alive = false;
-                    kills++;
+            this.getGun().bulletCount = Math.max(0, this.getGun().bulletCount - bulletsConsumed);
+            if (hit < this.getGun().accuracy) {
+                player.setHp(player.getHp() - this.getGun().damage);
+                if (player.getHp() < 1) {
+                    System.out.println("\n" + this.getUsername() + " killed " + player.getUsername());
+                    player.setAlive(false);
+                    this.setKills(this.getKills() + 1);
                 } else {
-                    System.out.println("\n" + username + " dealt " + gun.damage + " damage to " + player.username);
+                    System.out.println("\n" + this.getUsername() + " dealt " + this.getGun().damage + " damage to " + player.getUsername());
                 }
             } else {
-                System.out.println("\n" + username + " have missed");
+                System.out.println("\n" + this.getUsername() + " have missed");
             }
         }
     }
 
     void reload () {
-        gun.bulletCount = gun.maxBullets;
-        System.out.println("\n" + username + " has reloaded their gun");
+        this.getGun().bulletCount = this.getGun().maxBullets;
+        System.out.println("\n" + this.getUsername() + " has reloaded their gun");
     }
 
     void heal () {
         int healAmount = random.nextInt(10, 50);
-        hp = Math.min(hp + healAmount, 100);
-        System.out.println("\n" + username + " healed " + healAmount + "HP");
+        this.setHp(Math.min(this.getHp() + healAmount, 100));
+        System.out.println("\n" + this.getUsername() + " healed " + healAmount + "HP");
     }
 
     public String toString() {
-        return "\nHP: " + hp + "/100";
+        return "\nHP: " + this.getHp() + "/100";
     }
 
 }

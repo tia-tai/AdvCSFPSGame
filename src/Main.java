@@ -11,9 +11,6 @@ public class Main {
         Random random = new Random();
         Scanner scanner = new Scanner(System.in);
 
-        Player kim = new Player();
-        kim.username = "Kim";
-
         Weapon vandal = new Weapon();
         vandal.weaponName = "Vandal";
         vandal.maxBullets = 25;
@@ -21,21 +18,24 @@ public class Main {
         vandal.damage = 45;
         vandal.accuracy = 0.8f;
 
-        kim.gun = vandal;
+        Player kim = new Player("Kim", 0, true, vandal, 100);
         players.add(kim);
         allCharacters.add(kim);
 
         Player mrH = new Player();
-        mrH.username = "Mr. Hernandez";
+        mrH.setUsername("Mr. Hernandez");
+        mrH.setKills(0);
+        mrH.setAlive(true);
+        mrH.setHp(100);
 
         Weapon odin = new Weapon();
         odin.weaponName = "odin";
         odin.maxBullets = 100;
         odin.bulletCount = 100;
-        odin.damage = 60;
-        odin.accuracy = 1.0f;
+        odin.damage = 20;
+        odin.accuracy = 0.9f;
 
-        mrH.gun = odin;
+        mrH.setGun(odin);
         players.add(mrH);
         allCharacters.add(mrH);
 
@@ -47,9 +47,12 @@ public class Main {
         p80.accuracy = 0.7f;
 
         NPC john = new NPC();
-        john.username = "John";
+        john.setUsername("John");
+        john.setKills(0);
+        john.setAlive(true);
+        john.setHp(100);
 
-        john.gun = p80;
+        john.setGun(p80);
         npcs.add(john);
         allCharacters.add(john);
 
@@ -61,9 +64,11 @@ public class Main {
         guardian.accuracy = 0.8f;
 
         NPC robocop = new NPC();
-        robocop.username = "Robo Cop";
-
-        robocop.gun = guardian;
+        robocop.setUsername("Robo Cop");
+        robocop.setKills(0);
+        robocop.setAlive(true);
+        robocop.setHp(100);
+        robocop.setGun(guardian);
         npcs.add(robocop);
         allCharacters.add(robocop);
 
@@ -75,9 +80,11 @@ public class Main {
         m1911.accuracy = 0.2f;
 
         NPC alex = new NPC();
-        alex.username = "Alex";
-
-        alex.gun = m1911;
+        alex.setUsername("Alex");
+        alex.setKills(0);
+        alex.setAlive(true);
+        alex.setHp(100);
+        alex.setGun(m1911);
         npcs.add(alex);
         allCharacters.add(alex);
 
@@ -89,9 +96,11 @@ public class Main {
         samosa.accuracy = 0.7f;
 
         NPC shoeb = new NPC();
-        shoeb.username = "Shoeb";
-
-        shoeb.gun = samosa;
+        shoeb.setUsername("Shoeb");
+        shoeb.setKills(0);
+        shoeb.setAlive(true);
+        shoeb.setHp(100);
+        shoeb.setGun(samosa);
         npcs.add(shoeb);
         allCharacters.add(shoeb);
 
@@ -103,9 +112,11 @@ public class Main {
         bow.accuracy = 0.4f;
 
         NPC tom = new NPC();
-        tom.username = "Tom";
-
-        tom.gun = bow;
+        tom.setUsername("Tom");
+        tom.setKills(0);
+        tom.setAlive(true);
+        tom.setHp(100);
+        tom.setGun(bow);
         npcs.add(tom);
         allCharacters.add(tom);
 
@@ -118,12 +129,12 @@ public class Main {
         weapons.add(m1911);
 
         System.out.println("Game Starts!");
-        System.out.print(kim.toString());
+        System.out.print(kim);
 
         for (int i = 0; i < 100; i++) {
             int aliveCount = 0;
             for (Character character : allCharacters) {
-                if (character.alive) {
+                if (character.isAlive()) {
                     aliveCount++;
                 }
             }
@@ -143,7 +154,7 @@ public class Main {
                     int npcIndex = random.nextInt(0, npcs.size());
                     NPC npc = npcs.get(npcIndex);
                     Character player = null;
-                    while (!npc.alive) {
+                    while (!npc.isAlive()) {
                         npcs.remove(npcIndex);
                         if (npcs.isEmpty()) {
                             break;
@@ -152,12 +163,12 @@ public class Main {
                             npc = npcs.get(npcIndex);
                         }
                     }
-                    if (npc.alive) {
+                    if (npc.isAlive()) {
                         if (target == 0) {
                             if (!players.isEmpty()) {
                                 int playerIndex = random.nextInt(0, players.size());
                                 player = players.get(playerIndex);
-                                while (!player.alive) {
+                                while (!player.isAlive()) {
                                     players.remove(playerIndex);
                                     if (players.isEmpty()) {
                                         break;
@@ -183,7 +194,7 @@ public class Main {
                 if (!players.isEmpty()) {
                     int playerIndex = random.nextInt(0,players.size());
                     Player player = players.get(playerIndex);
-                    while (!player.alive) {
+                    while (!player.isAlive()) {
                         players.remove(playerIndex);
                         if (!players.isEmpty()) {
                             playerIndex = random.nextInt(0,players.size());
@@ -193,24 +204,24 @@ public class Main {
                         }
                     }
 
-                    if (player.alive) {
-                        System.out.println("\n" + player.username + " Move Menu:\n1. Shoot NPC\n2. Shoot Player\n3. Reload\n4. Heal");
+                    if (player.isAlive()) {
+                        System.out.println("\n" + player.getUsername() + " Move Menu:\n1. Shoot NPC\n2. Shoot Player\n3. Reload\n4. Heal");
                         String choice = scanner.nextLine();
                         switch (choice) {
                             case ("1") -> {
                                 StringBuilder npcNames = new StringBuilder();
                                 NPC npcChoice = null;
                                 for (NPC npc : npcs) {
-                                    if (npc.alive) {
-                                        npcNames.append(npc.username).append("\n");
+                                    if (npc.isAlive()) {
+                                        npcNames.append(npc.getUsername()).append("\n");
                                     }
                                 }
 
                                 while (npcChoice == null) {
-                                    System.out.println("\n" + player.username + " Shoot Menu:\n" + npcNames);
+                                    System.out.println("\n" + player.getUsername() + " Shoot Menu:\n" + npcNames);
                                     String npcChoiceName = scanner.nextLine();
                                     for (NPC npc : npcs) {
-                                        if (npc.username.equals(npcChoiceName)) {
+                                        if (npc.getUsername().equals(npcChoiceName)) {
                                             npcChoice = npc;
                                         }
                                     }
@@ -221,18 +232,18 @@ public class Main {
                                 StringBuilder playerNames = new StringBuilder();
                                 Player playerChoice = null;
                                 for (Player listplayer : players) {
-                                    if (!listplayer.username.equals(player.username)) {
-                                        if (listplayer.alive) {
-                                            playerNames.append(listplayer.username).append("\n");
+                                    if (!listplayer.getUsername().equals(player.getUsername())) {
+                                        if (listplayer.isAlive()) {
+                                            playerNames.append(listplayer.getUsername()).append("\n");
                                         }
                                     }
                                 }
 
                                 while (playerChoice == null) {
-                                    System.out.println("\n" + player.username + " Shoot Menu:\n" + playerNames);
+                                    System.out.println("\n" + player.getUsername() + " Shoot Menu:\n" + playerNames);
                                     String playerChoiceName = scanner.nextLine();
                                     for (Player listplayer : players) {
-                                        if (listplayer.username.equals(playerChoiceName)) {
+                                        if (listplayer.getUsername().equals(playerChoiceName)) {
                                             playerChoice = listplayer;
                                         }
                                     }
@@ -253,13 +264,13 @@ public class Main {
             }
         }
 
-        allCharacters.sort((c1, c2) -> Integer.compare(c2.kills, c1.kills));
+        allCharacters.sort((c1, c2) -> Integer.compare(c2.getKills(), c1.getKills()));
 
         System.out.println("\n=== LEADERBOARD ===");
         for (int i = 0; i < allCharacters.size(); i++) {
             Character character = allCharacters.get(i);
-            System.out.println((i + 1) + ". " + character.username +
-                    " - Kills: " + character.kills);
+            System.out.println((i + 1) + ". " + character.getUsername() +
+                    " - Kills: " + character.getKills());
         }
 
     }
