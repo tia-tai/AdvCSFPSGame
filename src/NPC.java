@@ -1,11 +1,11 @@
-public class NPC extends Character {
+public class NPC extends Character { // Sam
 
     void action(Character player) {
         int actionNumber = random.nextInt(0, 2);
         switch (actionNumber) {
             case (0) -> {
                 if (gun.bulletCount < 1) {
-                    System.out.println("\n" + username + " needs to reload");
+                    System.out.println("\n" + this.getUsername() + " needs to reload");
                     gun.bulletCount = gun.maxBullets;
                 } else {
                     int bulletsConsumed = random.nextInt(1, 6);

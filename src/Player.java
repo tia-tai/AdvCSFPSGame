@@ -1,6 +1,6 @@
 import java.util.Random;
 
-public class Player extends Character {
+public class Player extends Character { // Tai
 
     public Player(String username, int kills, boolean alive, Weapon gun, int hp) {
         super(username, kills, alive, gun, hp);

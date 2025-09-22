@@ -1,6 +1,6 @@
 import java.util.ArrayList;
 
-public class Weapon {
+public class Weapon { // Harry
     String weaponName;
     boolean shooting;
     int magazineNumber;
@@ -17,16 +17,16 @@ public class Weapon {
         System.out.println(weaponName + " is being aimed.");
 
     }
+
     void inspect(boolean right){
         if (right) {
             viewDirection = viewDirection + 4;
         } else {
             viewDirection = viewDirection - 4;
         }
-        System.out.println(weaponName + " weapon chages direction to: " + viewDirection);
-
-
+        System.out.println(weaponName + " weapon changes direction to: " + viewDirection);
     }
+
     void reload(){
         if (shooting) {
             if ((bulletCount < 1) && (magazineNumber > 0)) {
@@ -41,6 +41,7 @@ public class Weapon {
             System.out.println(weaponName + " doesn't need reloaded.");
         }
     }
+
     void fire(Player owner) {
 
 
