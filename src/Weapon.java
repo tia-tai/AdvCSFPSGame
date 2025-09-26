@@ -1,19 +1,32 @@
 import java.util.ArrayList;
 
-public class Weapon { // Harry
-    String weaponName;
-    boolean shooting;
-    int magazineNumber;
-    int maxBullets;
-    int bulletCount;
-    int damage;
-    boolean inspection;
-    int viewDirection;
-    float accuracy;
+public class Weapon {
+    private String weaponName;
+    private boolean shooting;
+    private int magazineNumber;
+    private int maxBullets;
+    private int bulletCount;
+    private int damage;
+    private boolean inspection;
+    private int viewDirection;
+    private float accuracy;
+    private Character sight;
 
 
+    public Weapon(String weaponName, boolean shooting, int magazineNumber, int maxBullets, int bulletCount, int damage, boolean inspection, float accuracy){
+        this.weaponName = weaponName;
+        this.shooting = shooting;
+        this.magazineNumber = magazineNumber;
+        this.maxBullets = maxBullets;
+        this.bulletCount = bulletCount;
+        this.damage = damage;
+        this.inspection = inspection;
+        this.viewDirection = viewDirection;
+        this.accuracy = accuracy;
+        this.sight = sight;
+    }
 
-    void aimDownSights(){
+    void aimDownSights() {
         System.out.println(weaponName + " is being aimed.");
 
     }
@@ -26,6 +39,9 @@ public class Weapon { // Harry
         }
         System.out.println(weaponName + " weapon changes direction to: " + viewDirection);
     }
+
+
+
 
     void reload(){
         if (shooting) {
